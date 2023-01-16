@@ -1,0 +1,6 @@
+.write{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: .5rem;
+}

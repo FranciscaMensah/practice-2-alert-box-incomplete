@@ -1,0 +1,55 @@
+.Textarea{
+    display: flex;
+    flex-direction: column;
+    margin-top: .5rem;
+}
+
+.Textarea button {
+    width: fit-content;
+    padding: .2rem .8rem;
+}
+
+.text-area{
+    min-height: 50vh;
+    border: 1px solid #eeeeee;
+    background-color: white;
+    color: #1c2a5a81;
+    padding: 1.5rem 1rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.text-area:focus{
+    outline: none;
+    color: #363636;
+    font-size: 1rem;
+    /* padding: .7rem; */
+    /* transition: .06s ease-in; */
+}
+
+.text-area,
+.title-area{
+    padding: 1rem .9rem;
+    outline: 2px solid #00000000;
+    border: 1px solid #00000010;
+    color: #1c2a5af6;
+}
+
+.text-area:focus,
+.title-area:focus{
+    border: 2px solid #1c2a5a2c;
+    outline: none;
+    color: inherit;
+}
+
+.title-area{
+    width: 100%;
+    height: 2.5rem;
+    padding: .5rem .7rem;
+    border-radius: .2rem;
+    /* font-weight: bold; */
+    border-bottom: 1px solid #7a7a7a41;
+    text-transform: capitalize;
+    background-color: white;
+}

@@ -1,0 +1,12 @@
+.tabs{
+    width: 90%;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.tabs button{
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    font-size: .95rem;
+    letter-spacing: .1rem;
+}
