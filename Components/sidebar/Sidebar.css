@@ -1,13 +1,12 @@
 .sidebar{
     padding: 2rem;
     /* max-width: 300px; */
-
 }
 
 .sidebar-header{
     display: flex;
     align-items: center;
-    padding: 1rem 0 2rem 1rem;
+    padding: 1rem 0 2rem .5rem;
     justify-content: space-between;
 }
 
@@ -26,6 +25,10 @@
     color: #6b6b6b;
 }
 
+.notes{
+    padding: 0 0 0 .6rem;
+}
+
 .notes > li{
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
 }

@@ -6,11 +6,16 @@ import Sidebar from '../sidebar/Sidebar';
 import Editor from '../editor/Editor';
 import AlertBox from '../alert/AlertBox';
 import { nanoid } from 'nanoid';
+import Button from '../button/Button';
 
 export default function App(){
     const placeholderText = 'Type new note...';
     const placeholderTitle = 'Title';
-    const [alert, setAlert] = React.useState({});
+    const [alert, setAlert] = React.useState({
+        state: false,
+        type: null,
+        message: null
+    });
     const [markdown, setMarkdown] = React.useState(
         {
             markdown: placeholderText,
@@ -28,7 +33,9 @@ export default function App(){
         }
     );
     const [notes, setNotes] = React.useState([]);
-    const [currentNoteId, setCurrentNoteId] = React.useState((notes[0] && notes[0].id) || '');
+    const [currentNoteId, setCurrentNoteId] = React.useState(
+        (notes[0] && notes[0].id) || ''
+    );
     
     
     function handleNoteChange (event){
@@ -57,42 +64,55 @@ export default function App(){
     }
 
     function addNewNote(){  
-        setMarkdown(prev => {
-            return{
-            ...prev,
-            dateCreated: functions.getDate()
-            }
-        });
-
-        const newNote = {
-            id: nanoid(),
-            body: markdown
-        }
-
-        if(markdown.markdown === placeholderText){
-            setAlert({
+        if(markdown.markdown === placeholderText && markdown.noteTitle === placeholderTitle){
+            setAlert(prev => { 
+                return { 
+                ...prev,
                 state: true, 
                 type: 'warning', 
-                message: "Note cannot be blank."})
+                message: "Note cannot be blank."
+                }
+            }
+        )
+            return
         }
 
         else{ 
+            setMarkdown(prev => {
+                return{
+                ...prev,
+                dateCreated: functions.getDate()
+                }
+            });
+    
+            const newNote = {
+                id: nanoid(),
+                body: markdown
+            }
+
             setNotes(prev => [newNote, ...prev]);
+            setCurrentNoteId(newNote.id)
         }
         console.log(notes)
     }
 
     function closeAlertBox(){
-        setAlert({state: false});
+        setAlert(prev => {
+            return{ ...prev, state: false}
+        });
     }
 
 
     return (
         <div className='app'>
+            { alert.state &&
                 <AlertBox
-                    alert={alert}
-                    handleClick={closeAlertBox}
+                alert={alert}
+                handleClick={closeAlertBox}
                 />
+            }
+
+            {notes.length !== 0? 
             <Split
                 sizes={[25, 75]}
                 gutterSize={8}
@@ -101,6 +121,7 @@ export default function App(){
 
                     <Sidebar
                         notes={notes}
+                        currentNoteId={currentNoteId}
                     />
                     <Editor
                         markdown={markdown}
@@ -108,7 +129,21 @@ export default function App(){
                         handleTitleChange={handleTitleChange}
                         handleNoteChange={handleNoteChange}
                     />
-            </Split>
+            </Split>:
+
+            <div className='no-notes'>
+                <h1>
+                    You have no notes
+                </h1>
+               <Button
+                    children='Create one now'
+                    width='fit-content'
+                    fontSize='1rem'
+                    backgroundColor='#1c2a5a'
+                    padding='1rem 2rem'
+               />
+            </div>
+}
         </div>
     )
 }

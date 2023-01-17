@@ -11,6 +11,7 @@ export default function Button ({
     fontWeight,
     borderRadius,
     margin,
+    padding,
     children,
     handleClick
 }){
@@ -25,6 +26,7 @@ export default function Button ({
         fontWeight,
         borderRadius,
         margin,
+        padding
     };
 
     return(

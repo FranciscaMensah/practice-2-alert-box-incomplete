@@ -43,6 +43,12 @@ export const functions = {
         return date;
     },
 
+    getTextPortion(text, cutOffIndex){
+        const textPortion = text.length <= cutOffIndex ?
+            text.substring(0) : text.substring(0, 50) + '...';
+            return textPortion;
+    },
+
     clearTextBox(event){
         event.target.value = '';
     }
